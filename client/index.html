@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soldier Handoff</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/vendor/three/build/three.module.js",
+        "three/addons/": "/vendor/three/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <canvas id="game"></canvas>
+
+    <!-- Join screen -->
+    <div id="join-screen">
+      <div class="join-card">
+        <h1>SOLDIER HANDOFF</h1>
+        <p class="tagline">Squad tactics &middot; 5v5 &middot; last team standing</p>
+        <div class="join-buttons">
+          <button id="join-blue" class="team-btn blue">Join Blue</button>
+          <button id="join-auto" class="team-btn auto">Auto Assign</button>
+          <button id="join-red" class="team-btn red">Join Red</button>
+        </div>
+        <div class="help">
+          <div><b>Left click / drag</b> — select soldiers</div>
+          <div><b>Right click</b> — move order</div>
+          <div><b>Right click + drag</b> — move, then face drag direction</div>
+          <div><b>Shift + Right drag</b> — face direction in place</div>
+          <div><b>Q / E or middle-drag</b> — rotate camera &middot; <b>WASD</b> — pan &middot; <b>wheel</b> — zoom</div>
+          <div><b>1–5</b> — select soldier &middot; <b>F</b> — select all &middot; <b>H</b> — halt</div>
+          <div class="terrain-help">
+            <span class="chip hill">Hills</span> +vision, +fire range &middot;
+            <span class="chip forest">Forest</span> concealment, hard to hit &middot;
+            <span class="chip road">Roads</span> +speed &middot;
+            <span class="chip rock">Rocks</span> block shots
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUD -->
+    <div id="hud" class="hidden">
+      <div id="top-bar">
+        <div id="score-blue" class="score blue">BLUE 5</div>
+        <div id="phase-msg"></div>
+        <div id="score-red" class="score red">RED 5</div>
+      </div>
+      <div id="squad-bar"></div>
+      <div id="banner" class="hidden"></div>
+      <div id="conn-status" class="hidden">Reconnecting…</div>
+    </div>
+
+    <div id="select-box" class="hidden"></div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

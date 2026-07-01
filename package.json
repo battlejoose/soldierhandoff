@@ -1,0 +1,14 @@
+{
+  "name": "soldierhandoff",
+  "version": "0.1.0",
+  "description": "Squad-based multiplayer tactics game: rotatable isometric camera, RTS controls, fog of war",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "three": "^0.160.1",
+    "ws": "^8.17.0"
+  }
+}

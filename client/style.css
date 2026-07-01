@@ -1,0 +1,116 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #0b0e13;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #dde3ea;
+  user-select: none;
+}
+
+#app { position: relative; width: 100%; height: 100%; }
+#game { display: block; width: 100%; height: 100%; cursor: crosshair; }
+
+.hidden { display: none !important; }
+
+/* ---- Join screen ---- */
+#join-screen {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(15, 20, 30, 0.85), rgba(5, 8, 12, 0.97));
+  z-index: 20;
+}
+.join-card {
+  text-align: center;
+  padding: 48px 56px;
+  background: rgba(16, 22, 32, 0.9);
+  border: 1px solid rgba(120, 150, 190, 0.25);
+  border-radius: 14px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  max-width: 640px;
+}
+.join-card h1 {
+  font-size: 34px; letter-spacing: 8px; font-weight: 800;
+  color: #e8eef6;
+}
+.tagline { margin: 8px 0 28px; color: #8fa0b5; letter-spacing: 1px; }
+.join-buttons { display: flex; gap: 14px; justify-content: center; margin-bottom: 28px; }
+.team-btn {
+  padding: 13px 26px; font-size: 15px; font-weight: 700; letter-spacing: 1px;
+  border: none; border-radius: 8px; cursor: pointer; color: #fff;
+  transition: transform 0.08s ease, filter 0.15s ease;
+}
+.team-btn:hover { filter: brightness(1.2); transform: translateY(-1px); }
+.team-btn.blue { background: #2563eb; }
+.team-btn.red { background: #dc2626; }
+.team-btn.auto { background: #374151; }
+.help { font-size: 13px; color: #9db0c5; line-height: 1.9; text-align: left; }
+.help b { color: #d7e1ee; }
+.terrain-help { margin-top: 10px; border-top: 1px solid rgba(120,150,190,0.15); padding-top: 10px; }
+.chip { padding: 1px 8px; border-radius: 10px; font-weight: 700; font-size: 12px; color: #0b0e13; }
+.chip.hill { background: #b9a97c; }
+.chip.forest { background: #4e8f4e; color: #eaffea; }
+.chip.road { background: #a8a29e; }
+.chip.rock { background: #7c7f85; color: #f0f0f0; }
+
+/* ---- HUD ---- */
+#hud { position: absolute; inset: 0; pointer-events: none; z-index: 10; }
+#top-bar {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 26px;
+  padding: 10px 26px;
+  background: rgba(10, 14, 20, 0.75);
+  border: 1px solid rgba(120, 150, 190, 0.2); border-top: none;
+  border-radius: 0 0 12px 12px;
+  backdrop-filter: blur(6px);
+}
+.score { font-size: 17px; font-weight: 800; letter-spacing: 2px; }
+.score.blue { color: #60a5fa; }
+.score.red { color: #f87171; }
+#phase-msg { font-size: 14px; color: #aab8ca; min-width: 160px; text-align: center; }
+
+#squad-bar {
+  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 10px; pointer-events: auto;
+}
+.unit-card {
+  width: 74px; padding: 7px 8px 6px;
+  background: rgba(10, 14, 20, 0.8);
+  border: 1px solid rgba(120, 150, 190, 0.25);
+  border-radius: 8px; text-align: center; cursor: pointer;
+  transition: border-color 0.1s ease;
+}
+.unit-card.selected { border-color: #fbbf24; box-shadow: 0 0 10px rgba(251, 191, 36, 0.35); }
+.unit-card.dead { opacity: 0.35; cursor: default; }
+.unit-card .name { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #c4d0de; margin-bottom: 5px; }
+.unit-card .hp-track { height: 5px; background: #232a34; border-radius: 3px; overflow: hidden; }
+.unit-card .hp-fill { height: 100%; background: #34d399; border-radius: 3px; transition: width 0.2s ease; }
+.unit-card .hp-fill.mid { background: #fbbf24; }
+.unit-card .hp-fill.low { background: #ef4444; }
+
+#banner {
+  position: absolute; top: 34%; left: 50%; transform: translate(-50%, -50%);
+  font-size: 44px; font-weight: 900; letter-spacing: 6px; text-align: center;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
+  padding: 18px 48px;
+  background: rgba(8, 11, 16, 0.72);
+  border-radius: 14px;
+  border: 1px solid rgba(120, 150, 190, 0.25);
+}
+#banner .sub { display: block; font-size: 15px; font-weight: 500; letter-spacing: 2px; color: #9db0c5; margin-top: 10px; }
+#banner.blue { color: #60a5fa; }
+#banner.red { color: #f87171; }
+
+#conn-status {
+  position: absolute; top: 12px; right: 14px;
+  padding: 6px 14px; border-radius: 8px;
+  background: rgba(190, 60, 60, 0.85); font-size: 13px; font-weight: 600;
+}
+
+#select-box {
+  position: absolute;
+  border: 1px solid rgba(96, 165, 250, 0.9);
+  background: rgba(96, 165, 250, 0.12);
+  pointer-events: none; z-index: 15;
+}
